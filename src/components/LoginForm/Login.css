@@ -1,12 +1,12 @@
 body {
-    background-color: #b6e0c5;
+    background-color: #F5FCF5;
     font-family: 'Ubuntu', sans-serif;
     width: 100vw;
     height: 100vh;
 }
 
 .main {
-    background-color: #FFFFFF;
+    background-color: #e9fce9;
     width: 400px;
     height: 400px;
     margin: 7em auto;
@@ -16,9 +16,7 @@ body {
 
 .sign {
     padding-top: 40px;
-    color: #1D8742;
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: bold;
+    color: #FF8815;
     font-size: 23px;
 }
 
@@ -28,7 +26,7 @@ body {
     font-weight: 700;
     font-size: 14px;
     letter-spacing: 1px;
-    background: rgba(136, 126, 126, 0.04);
+    background: rgba(136, 126, 126, 0.1);
     padding: 10px 20px;
     border: none;
     border-radius: 20px;
@@ -55,18 +53,20 @@ form.form1 {
     cursor: pointer;
     border-radius: 5em;
     color: #fff;
-    background: linear-gradient(to right, #1D8742, #4cb06f);
+    background: linear-gradient(to right, #FF8815, #ffbf75);
     border: 0;
     padding-left: 40px;
     padding-right: 40px;
     padding-bottom: 10px;
     padding-top: 10px;
-    font-family: 'Ubuntu', sans-serif;
     margin-left: 35%;
-    font-size: 13px;
+    font-size: 1rem;
     box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
 }
 
+.submit:hover {
+    transform: scale(1.1);
+}
 
 
 @media (max-width: 600px) {
