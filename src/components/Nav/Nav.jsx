@@ -10,6 +10,7 @@ const Nav = () => {
 
         setNavbarOpen(!navbarOpen)
     }
+    const token = window.localStorage.getItem("token")
     return (
         <nav>
             <div className="logo">
@@ -18,9 +19,10 @@ const Nav = () => {
             <div className={`nav-links ${navbarOpen ? " nav-active" : ""}`}>
                 <Link className="nav-link" to="/">Home</Link>
                 <Link className="nav-link" to="/">About</Link>
-                <Link className="nav-link" to="/createProject">Create Project</Link>
-                <Link className="nav-link" to="/login">Login</Link>
-                <Link className="nav-link" to="/login">Register</Link>
+                {token && <Link className="nav-link" to="/createProject">Create a Project</Link>}
+                {!token && <Link className="nav-link" to="/login">Login</Link>}
+                {!token && <Link className="nav-link" to="/register">Register</Link>}
+                {token && <Link className="nav-link" to="/createProject">Create a Project</Link>}
 
             </div>
             <div className={`burger`} onClick={navSlide}>

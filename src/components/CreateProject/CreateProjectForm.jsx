@@ -5,7 +5,10 @@ function ProjectForm() {
 
     const [projectInfo, setProjectInfo] = useState({});
     const handleChange = (event) => {
-        const { id, value } = event.target;
+        let { id, value } = event.target;
+        if (id === "close_date") {
+            value = new Date(value).toISOString();
+        }
         setProjectInfo((prevProject) => {
             return {
                 ...prevProject,
@@ -13,6 +16,7 @@ function ProjectForm() {
             };
         });
     };
+
     const postData = () => {
         console.log("I'm posting a project to your API")
         const token = window.localStorage.getItem("token")
@@ -41,12 +45,12 @@ function ProjectForm() {
                 return results.json();
             })
             .then((data) => {
-                setCategoriesList(data);
+                setCategoriesList([{ id: null, name: "Select a category" }, ...data]);
             });
     }, []);
 
     let categoryOption = categoriesList.map((category) =>
-        <option key={category.name}>{category.name}</option>
+        <option value={category.id} key={category.id}>{category.name}</option>
     );
 
     return (
@@ -55,32 +59,30 @@ function ProjectForm() {
                 <p className="pagetitle--project" align="center">Create a project</p>
                 <form onSubmit={handleSubmit} className="form2">
                     <div className="input-wrapper--createproject">
-
-
-                        <input className="field--createproject" type="text" id="title" placeholder="What is the title of your project?" onChange={handleChange} />
-
+                        <label>Title</label>
+                        <input className="field--createproject" type="text" id="title" placeholder="" onChange={handleChange} />
                         <div>
-
-                            <input className="field--createproject" type="text" id="image" placeholder="Enter your project image URL" onChange={handleChange} />
+                            <label>Project Image</label>
+                            <input className="field--createproject" type="text" id="image" placeholder="Enter an image URL" onChange={handleChange} />
                         </div>
                         <div>
-
-                            <input className="field--createproject" type="text" id="goal" placeholder="What is your project goal $ ?" onChange={handleChange} />
+                            <label>Project Goal</label>
+                            <input className="field--createproject" type="text" id="goal" placeholder="$" onChange={handleChange} />
                         </div>
                         <div>
-
-                            <input className="field--createproject" type="date" id="close_date" placeholder="When does the project close?" onChange={handleChange} />
+                            <label>When does this project close (if ever)?</label>
+                            <input className="field--createproject" type="datetime-local" id="close_date" placeholder="When does the project close?" onChange={handleChange} />
                         </div>
                         <div>
-
+                            <label>Description</label>
                             <textarea className="field--createproject" rows="5" id="description" placeholder="Enter a description for your project" onChange={handleChange} ></textarea>
                         </div>
-                        <div>
+                        {/* <div>
 
                             <input className="field--createproject" type="date" id="created_date" placeholder="" onChange={handleChange} />
-                        </div>
+                        </div> */}
                         <div>
-                            <select className="field--createproject" id="category" placeholder="category">
+                            <select className="field--createproject" id="category" placeholder="category" onChange={handleChange}>
                                 {categoryOption}
                             </select>
                             {/* <input className="field--createproject" type="text" id="category" placeholder="category" onChange={handleChange} /> */}

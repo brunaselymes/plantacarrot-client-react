@@ -2,65 +2,74 @@ import React, { useState } from 'react';
 import { useHistory } from "react-router-dom";
 import './Register.css'
 
-function LoginForm() {
-
-    const [credentials, setCredentials] = useState({
-        username: "",
-        password: "",
-    });
-
+function RegisterForm() {
     const history = useHistory();
-
-    const handleChange = (e) => {
-        const { id, value } = e.target;
-        setCredentials((prevCredentials) => ({
-            ...prevCredentials,
-            [id]: value,
-        }));
+    const [userInfo, setUser] = useState({});
+    const handleChange = (event) => {
+        let { id, value } = event.target;
+        setUser((prevProject) => {
+            return {
+                ...prevProject,
+                [id]: value,
+            };
+        });
     };
-
     const postData = () => {
-        return fetch(`${process.env.REACT_APP_API_URL}api-token-auth/`,
+        console.log("I'm posting a project to your API")
+
+        return fetch(`${process.env.REACT_APP_API_URL}users/`,
             {
                 method: "post",
-                headers: { "Content-Type": "application/json", },
-                body: JSON.stringify(credentials),
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(userInfo),
             }).then(i => i.json());
     };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (credentials.username && credentials.password) {
-            postData()
-                .then((response) => {
-                    if (response.token) {
-                        window.localStorage.setItem("token", response.token);
-                        history.push("/");
-                    } else {
-                        alert(response.non_field_errors[0])
-                    }
-                })
-        }
+        postData()
+            .then((response) => {
+                console.log('------response from my API --------')
+                history.push("/");
+            })
     };
-
     return (
         <div className="login-page">
-            <div className="main">
-                <p className="sign" align="center">Sign in</p>
-                <form onSubmit={handleSubmit} className="form1">
+            <div className="main--register">
+                <p className="pagetitle--register" align="center">Create your account</p>
+                <form onSubmit={handleSubmit} className="form3">
                     <div>
-
-                        <input className="field" type="text" id="username" placeholder="Enter username" onChange={handleChange} />
+                        <label>First Name</label>
+                        <input className="field--register" type="text" id="first_name" placeholder="Enter your first name" onChange={handleChange} />
                     </div>
                     <div>
-
-                        <input className="field" type="password" id="password" placeholder="Password" onChange={handleChange} />
+                        <label>Last Name</label>
+                        <input className="field--register" type="text" id="last_name" placeholder="Enter your last name" onChange={handleChange} />
                     </div>
-                    <button className="submit" align="center" type="submit" onClick={handleSubmit}>Login</button>
+                    <div>
+                        <label >Email</label>
+                        <input className="field--register" type="text" id="email" placeholder="Enter your email" onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label >Bio</label>
+                        <input className="field--register" type="text" id="bio" placeholder="Tell us about you" onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label >Photo</label>
+                        <input className="field--register" type="text" id="image" placeholder="Share a photo of yourself" onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label >Username</label>
+                        <input className="field--register" type="text" id="username" placeholder="Enter a username" onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label >Password</label>
+                        <input className="field--register" type="password" id="password" placeholder="Enter your password" onChange={handleChange} />
+                    </div>
+                    <button className="submit--register" align="center" type="submit" onClick={handleSubmit}>Register</button>
                 </form>
             </div >
         </div>
     )
 }
 
-export default LoginForm;
+export default RegisterForm;
