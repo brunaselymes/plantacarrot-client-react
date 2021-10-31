@@ -6,6 +6,8 @@ import Nav from './components/Nav/Nav'
 import HomePage from './pages/HomePage';
 import ProjectPage from './pages/ProjectPage';
 import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import CreateProject from './pages/CreateProjectPage';
 
 function App() {
   return (
@@ -18,6 +20,12 @@ function App() {
           </Route>
           <Route path="/login">
             <LoginPage />
+          </Route>
+          <Route path="/register">
+            <RegisterPage />
+          </Route>
+          <Route exact path="/createProject">
+            <CreateProject />
           </Route>
           <Route exact path="/">
             <HomePage />
