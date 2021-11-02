@@ -1,12 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Emilys+Candy&family=Poppins&family=Roboto:wght@300;400&display=swap');
 
 body {
+  margin: 0;
   font-family: 'Poppins', sans-serif;
 }
 
+.page-container {
+  padding: 10px 50px;
+}
+
+.page-title {
+  font-family: 'Poppins';
+  font-weight: 300;
+  color: #328321;
+  padding-bottom: 1.5em;
+}
+
 #project-list {
+  --gap: 10px;
+  --num-cols: 3;
+  --row-height: 300px;
+
+  box-sizing: border-box;
+  padding: var(--gap);
+
   display: grid;
-  grid-template-columns: 30% 30% 30%;
-  column-gap: 10px;
-  row-gap: 10px;
+  grid-template-columns: repeat(var(--num-cols), 1fr);
+  grid-auto-rows: var(--row-height);
+  gap: var(--gap);
 }

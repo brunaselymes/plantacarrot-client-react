@@ -35,6 +35,7 @@ function LoginForm() {
                 .then((response) => {
                     if (response.token) {
                         window.localStorage.setItem("token", response.token);
+                        window.location = `${window.location.origin}/`
                         history.push("/");
                     } else {
                         alert(response.non_field_errors[0])

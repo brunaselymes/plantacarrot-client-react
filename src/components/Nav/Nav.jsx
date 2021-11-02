@@ -10,7 +10,13 @@ const Nav = () => {
 
         setNavbarOpen(!navbarOpen)
     }
-    const token = window.localStorage.getItem("token")
+    const logout = () => {
+        localStorage.clear();
+        setIsLoggedIn(false)
+    }
+    const [isLoggedIn, setIsLoggedIn] = useState(window.localStorage.getItem("token"))
+
+
     return (
         <nav>
             <div className="logo">
@@ -19,10 +25,12 @@ const Nav = () => {
             <div className={`nav-links ${navbarOpen ? " nav-active" : ""}`}>
                 <Link className="nav-link" to="/">Home</Link>
                 <Link className="nav-link" to="/">About</Link>
-                {token && <Link className="nav-link" to="/createProject">Create a Project</Link>}
-                {!token && <Link className="nav-link" to="/login">Login</Link>}
-                {!token && <Link className="nav-link" to="/register">Register</Link>}
-                {token && <Link className="nav-link" to="/createProject">Create a Project</Link>}
+                {isLoggedIn && <Link className="nav-link" to="/createProject">Create a Project</Link>}
+                {isLoggedIn && <Link className="nav-link" to="/createProject">My account</Link>}
+                {!isLoggedIn && <Link className="nav-link" to="/login">Login</Link>}
+                {isLoggedIn && <button onClick={logout} className="nav-link" to="/login">Logout</button>}
+                {!isLoggedIn && <Link className="nav-link" to="/register">Register</Link>}
+
 
             </div>
             <div className={`burger`} onClick={navSlide}>

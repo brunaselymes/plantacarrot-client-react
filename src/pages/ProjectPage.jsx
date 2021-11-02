@@ -17,10 +17,10 @@ const ProjectPage = () => {
     })
 
     return (
-        <div>
-            <h2>{projectData.title}</h2>
-            <h3>Created at: {new Date(projectData.created_date).toDateString()}</h3>
-            <h3>{`Status: ${projectData.is_active ? "Open" : "Closed"}`}</h3>
+        <div className="page-container">
+            <h2 className="page-title">{projectData.title}</h2>
+            <h3 className="project-title--card">Created at: {new Date(projectData.created_date).toDateString()}</h3>
+            <h3 className="project-title--card">{`Status: ${projectData.is_active ? "Open" : "Closed"}`}</h3>
             <p>{projectData.description}</p>
             <h4>Our goal is to raise ${projectData.goal}</h4>
             <img src={projectData.image} alt="project ilustration" />
