@@ -15,8 +15,6 @@ function RegisterForm() {
         });
     };
     const postData = () => {
-        console.log("I'm posting a project to your API")
-
         return fetch(`${process.env.REACT_APP_API_URL}users/`,
             {
                 method: "post",
