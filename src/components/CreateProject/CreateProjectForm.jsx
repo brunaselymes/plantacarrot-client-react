@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import './CreateProjectForm.css'
+import { api } from "../../api"
 
 function ProjectForm() {
     const history = useHistory();
@@ -19,15 +20,11 @@ function ProjectForm() {
     };
 
     const postData = () => {
-        console.log("I'm posting a project to your API")
-        const token = window.localStorage.getItem("token")
-        console.log(token)
-        return fetch(`${process.env.REACT_APP_API_URL}projects/`,
+        return api("projects/",
             {
                 method: "post",
-                headers: { "Content-Type": "application/json", "Authorization": `Token ${token}` },
                 body: JSON.stringify(projectInfo),
-            }).then(i => i.json());
+            });
     };
     const handleSubmit = (e) => {
         e.preventDefault();

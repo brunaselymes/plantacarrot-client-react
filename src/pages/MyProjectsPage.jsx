@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react'
 import ProjectCard from "../components/ProjectCard/ProjectCard";
 import { api } from "../api";
 
-const HomePage = () => {
+const MyProjectsPage = () => {
+
+    //list user's profile details and projects, ability to delete and update projects to go here
+
     const [projectList, setProjectList] = useState([]);
     useEffect(() => {
-        api("projects/")
+        api("projects/?only_user=true")
             .then((data) => {
                 setProjectList(data);
             });
@@ -13,16 +16,20 @@ const HomePage = () => {
 
     return (
         <div className="page-container">
-            <h2 className="page-title">Find a project you want to back</h2>
-            <ul id="project-list">
+            <h2 className="page-title">Manage your projects: </h2>
+            <div id="project-list">
                 {
                     projectList.map((projectData, key) => {
-                        return <ProjectCard key={key} projectData={projectData} />;
+                        return (
+                            <ProjectCard key={key} projectData={projectData} />
+                        );
                     })
                 }
-            </ul>
+            </div>
         </div>
     );
 }
 
-export default HomePage
+export default MyProjectsPage
+
+

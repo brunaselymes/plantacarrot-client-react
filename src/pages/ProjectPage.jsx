@@ -19,10 +19,10 @@ const ProjectPage = () => {
     return (
         <div className="page-container">
             <h2 className="page-title">{projectData.title}</h2>
-            <h3 className="project-title--card">Created at: {new Date(projectData.created_date).toDateString()}</h3>
+            <h3 className="project-title--card">Created: {new Date(projectData.created_date).toDateString()}</h3>
             <h3 className="project-title--card">{`Status: ${projectData.is_active ? "Open" : "Closed"}`}</h3>
             <p>{projectData.description}</p>
-            <h4>Our goal is to raise ${projectData.goal}</h4>
+            <h4>Our goal is to raise ${projectData.goal} 🥕</h4>
             <img src={projectData.image} alt="project ilustration" />
             <h3>Pledges:</h3>
             <ul>{oneProject.pledges.map((pledgeData, key) => {

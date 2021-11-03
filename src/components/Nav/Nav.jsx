@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Nav.css'
 
 const Nav = () => {
-
+    const history = useHistory();
     const [navbarOpen, setNavbarOpen] = useState(false)
 
     const navSlide = () => {
@@ -13,6 +13,7 @@ const Nav = () => {
     const logout = () => {
         localStorage.clear();
         setIsLoggedIn(false)
+        history.push('/')
     }
     const [isLoggedIn, setIsLoggedIn] = useState(window.localStorage.getItem("token"))
 
@@ -26,7 +27,7 @@ const Nav = () => {
                 <Link className="nav-link" to="/">Home</Link>
                 <Link className="nav-link" to="/">About</Link>
                 {isLoggedIn && <Link className="nav-link" to="/createProject">Create a Project</Link>}
-                {/* {isLoggedIn && <Link className="nav-link" to="/createProject">My account</Link>} */}
+                {isLoggedIn && <Link className="nav-link" to="/myprojectspage">My projects</Link>}
                 {!isLoggedIn && <Link className="nav-link" to="/login">Login</Link>}
                 {isLoggedIn && <button onClick={logout} className="nav-link" to="/login">Logout</button>}
                 {!isLoggedIn && <Link className="nav-link" to="/register">Register</Link>}
