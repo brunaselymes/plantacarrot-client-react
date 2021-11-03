@@ -17,13 +17,13 @@ const HomePage = () => {
     return (
         <div className="page-container">
             <h2 className="page-title">Find a project you want to back</h2>
-            <div id="project-list">
+            <ul id="project-list">
                 {
                     projectList.map((projectData, key) => {
                         return <ProjectCard key={key} projectData={projectData} />;
                     })
                 }
-            </div>
+            </ul>
         </div>
     );
 }

@@ -26,7 +26,7 @@ const Nav = () => {
                 <Link className="nav-link" to="/">Home</Link>
                 <Link className="nav-link" to="/">About</Link>
                 {isLoggedIn && <Link className="nav-link" to="/createProject">Create a Project</Link>}
-                {isLoggedIn && <Link className="nav-link" to="/createProject">My account</Link>}
+                {/* {isLoggedIn && <Link className="nav-link" to="/createProject">My account</Link>} */}
                 {!isLoggedIn && <Link className="nav-link" to="/login">Login</Link>}
                 {isLoggedIn && <button onClick={logout} className="nav-link" to="/login">Logout</button>}
                 {!isLoggedIn && <Link className="nav-link" to="/register">Register</Link>}

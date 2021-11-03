@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
 import './CreateProjectForm.css'
 
 function ProjectForm() {
-
+    const history = useHistory();
     const [projectInfo, setProjectInfo] = useState({});
     const handleChange = (event) => {
         let { id, value } = event.target;
@@ -34,6 +35,7 @@ function ProjectForm() {
             postData()
                 .then((response) => {
                     console.log('------response from my API --------')
+                    history.push("/");
                 })
         }
     };
