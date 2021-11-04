@@ -21,7 +21,7 @@ const MyProjectsPage = () => {
                 {
                     projectList.map((projectData, key) => {
                         return (
-                            <ProjectCard key={key} projectData={projectData} />
+                            <ProjectCard key={key} projectData={projectData} isEditMode={true} />
                         );
                     })
                 }
