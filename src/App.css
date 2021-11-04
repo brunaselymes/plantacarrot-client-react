@@ -33,3 +33,14 @@ body {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+.page-title--btn {
+  color: #F7630C;
+  font-family: 'Poppins';
+  font-weight: 300;
+  font-size: 28px;
+}
+
+.page-title--btn:hover {
+  transform: scale(1.2);
+}

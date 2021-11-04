@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ProjectCard from "../components/ProjectCard/ProjectCard";
 import { api } from "../api";
+import { Link } from 'react-router-dom';
 
 const MyProjectsPage = () => {
 
@@ -14,7 +15,7 @@ const MyProjectsPage = () => {
             });
     }, []);
 
-    return (
+    return (projectList.length ?
         <div className="page-container">
             <h2 className="page-title">Manage your projects: </h2>
             <div id="project-list">
@@ -27,7 +28,10 @@ const MyProjectsPage = () => {
                 }
             </div>
         </div>
-    );
+        : <div className="page-container">
+            <h3 className="page-title">You Don't have projects to display yet 😞</h3>
+            <Link className="page-title--btn" to="/createProject">Create a Project</Link>
+        </div>);
 }
 
 export default MyProjectsPage
