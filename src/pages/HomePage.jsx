@@ -10,7 +10,6 @@ const HomePage = () => {
                 setProjectList(data);
             });
     }, []);
-
     return (
         <div className="page-container">
             <h2 className="page-title">Find a project you want to back</h2>

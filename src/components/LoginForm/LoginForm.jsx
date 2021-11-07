@@ -9,6 +9,8 @@ function LoginForm() {
         password: "",
     });
 
+    const [error, setError] = useState(false)
+
     const history = useHistory();
 
     const handleChange = (e) => {
@@ -34,13 +36,18 @@ function LoginForm() {
             postData()
                 .then((response) => {
                     if (response.token) {
+                        setError(false)
                         window.localStorage.setItem("token", response.token);
                         window.location = `${window.location.origin}/`
                         history.push("/");
                     } else {
-                        alert(response.non_field_errors[0])
+
+                        setError(true)
                     }
                 })
+        }
+        else {
+            setError(true)
         }
     };
 
@@ -57,6 +64,9 @@ function LoginForm() {
 
                         <input className="field" type="password" id="password" placeholder="Password" onChange={handleChange} />
                     </div>
+                    {
+                        error && <div style={{ color: `red`, textAlign: `center`, marginBottom: `1em` }}>Wrong username/password </div>
+                    }
                     <button className="submit" align="center" type="submit" onClick={handleSubmit}>Login</button>
                 </form>
             </div >
