@@ -5,7 +5,7 @@ import { api } from "../api";
 const HomePage = () => {
     const [projectList, setProjectList] = useState([]);
     useEffect(() => {
-        api("projects/")
+        api("projects/", { annonymous: true })
             .then((data) => {
                 setProjectList(data);
             });
